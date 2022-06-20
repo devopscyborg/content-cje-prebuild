@@ -11,7 +11,8 @@ pipeline{
     }
       stage ('index'){
 		     steps {
-                         sh "cp /go/index.html ${WORKSPACE}"
+                         sh 'sudo docker exec –it golang:1 /bin/bash'
+                         sh "cat /go/index.html"
                          archiveArtifacts "index.html"
                      }
 		    
