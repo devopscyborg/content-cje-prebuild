@@ -3,9 +3,9 @@ pipeline{
 	stages {
 		stage ('Building and runnning image') {
       steps {
-        sh 'sudo docker build .'
+        sh 'sudo docker build --tag golang:1 .'
         echo "Building an image"
-        sh 'sudo docker --tag- golang:1 .'
+        sh 'sudo docker run golang:1'
         echo "Running a docker container"
       }
     }
