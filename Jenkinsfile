@@ -5,13 +5,13 @@ pipeline{
       steps {
         sh 'sudo docker build --tag golang:1 .'
         echo "Building an image"
-        sh 'sudo docker run golang:1'
+        sh 'sudo docker run --name golang golang:1'
         echo "Running a docker container"
       }
     }
       stage ('index'){
 		     steps {
-                         sh 'sudo docker exec -it golang:1 /bin/bash'
+                         sh 'sudo docker exec -it golang /bin/bash'
                          sh "cat /go/index.html"
                          archiveArtifacts "index.html"
                      }
