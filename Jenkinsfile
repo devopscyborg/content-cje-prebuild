@@ -1,22 +1,16 @@
 pipeline{
-	agent any 
+	agent { 
+      dockerfile {
+         filename 'Dockerfile'
+      } 
+   }
 	stages {
-		stage ('Building and runnning image') {
-      steps {
-        sh 'sudo docker build --tag golang:1 .'
-        echo "Building an image"
-        sh 'sudo docker run --name golang golang:1'
-        echo "Running a docker container"
-      }
-    }
-      stage ('index'){
+		stage ('index'){
 		     steps {
-                         sh 'sudo docker exec -it golang /bin/bash'
-                         sh "cat /go/index.html"
+                         sh "cp /go/index.html ${WORKSPACE}"
                          archiveArtifacts "index.html"
                      }
 		    
                 }
         }
 }
-             
